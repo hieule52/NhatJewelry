@@ -1,0 +1,632 @@
+/* =====================================================
+   NHẬT JEWERLY — Global Design System
+   Architecture: Luxury Jewelry Editorial
+   Typography: Cormorant Garamond (Serif) + Montserrat (Sans)
+   Palette: Ivory White + Deep Charcoal + Champagne Gold
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =====================================================
+   TAILWIND THEME EXTENSIONS
+   NOTE: Do NOT define --spacing-* here to prevent overriding
+   standard Tailwind core utilities (max-w-*, w-*, p-*, etc.)
+   ===================================================== */
+@theme {
+  --font-heading: "Cormorant Garamond", "Cormorant", "Georgia", serif;
+  --font-body: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* =====================================================
+   DESIGN TOKENS (LIGHT MODE DEFAULT)
+   ===================================================== */
+:root {
+  /* Colors — Warm Ivory & Charcoal Base (refined) */
+  --color-background: #F8F6F1;       /* Warmer ivory — luxury paper feel */
+  --color-surface: #F1EDE4;          /* Secondary surface — slightly deeper */
+  --color-foreground: #1A1714;       /* Near-black with warm tone */
+  --color-card: #FFFFFF;
+  --color-card-foreground: #1A1714;
+
+  /* Primary & Secondary */
+  --color-primary: #1A1714;
+  --color-primary-foreground: #F8F6F1;
+  --color-secondary: #44403C;
+  --color-secondary-foreground: #F8F6F1;
+
+  /* Champagne Gold Accents — Muted, WCAG-compliant */
+  --color-accent: #9A5C04;           /* Deep champagne gold — readable on ivory */
+  --color-accent-light: #B8720A;     /* Lighter for hover */
+  --color-accent-hover: #7D4A03;     /* Darker hover */
+  --color-accent-foreground: #FFFFFF;
+
+  /* Gold Color Palette */
+  --color-gold-700: #6B4902;
+  --color-gold-600: #835C08;
+  --color-gold-500: #9A5C04;
+  --color-gold-400: #C07D10;
+  --color-gold-300: #D4A017;
+  --color-gold-200: #EDD987;
+  --color-gold-100: #FAF0CB;
+
+  /* Neutrals */
+  --color-border: #E2DDD5;           /* Warm gray border */
+  --color-border-subtle: #EAE6DE;
+  --color-muted: #EDE9E1;            /* Muted ivory */
+  --color-muted-foreground: #6E6860; /* Warm gray text */
+  --color-input: #E2DDD5;
+  --color-ring: #9A5C04;
+
+  /* Charcoal Scales */
+  --color-charcoal-900: #0C0A08;
+  --color-charcoal-800: #1A1714;
+  --color-charcoal-700: #2A2520;
+  --color-charcoal-600: #44403C;
+  --color-charcoal-500: #58534E;
+  --color-charcoal-400: #7A746E;
+  --color-charcoal-300: #A8A29C;
+  --color-charcoal-200: #D4D0CC;
+  --color-charcoal-100: #E8E4E0;
+
+  /* Ivory Scales */
+  --color-ivory-50: #FDFCF9;
+  --color-ivory-100: #F8F6F1;
+  --color-ivory-200: #F1EDE4;
+
+  /* Typography Variables */
+  --font-heading: "Cormorant Garamond", "Cormorant", "Georgia", serif;
+  --font-body: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Header Height Tokens */
+  --header-height-mobile: 64px;
+  --header-height-desktop: 80px;
+
+  /* Shadows — Delicate & Warm-toned */
+  --shadow-sm: 0 1px 3px 0 rgba(26, 23, 20, 0.05);
+  --shadow-md: 0 4px 16px -2px rgba(26, 23, 20, 0.08);
+  --shadow-lg: 0 12px 32px -4px rgba(26, 23, 20, 0.10);
+  --shadow-gold: 0 4px 24px rgba(154, 92, 4, 0.18);
+
+  /* Motion Tokens — Luxury Editorial Motion */
+  --duration-fast: 180ms;
+  --duration-normal: 300ms;
+  --duration-slow: 600ms;
+  --duration-luxury: 900ms;
+  --duration-editorial: 1200ms;
+
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-silk: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* Transitions */
+  --transition-fast: var(--duration-fast) var(--ease-out);
+  --transition-base: var(--duration-normal) var(--ease-out);
+  --transition-slow: var(--duration-slow) var(--ease-luxury);
+  --transition-luxury: var(--duration-luxury) var(--ease-luxury);
+
+  /* Z-Index */
+  --z-base: 1;
+  --z-sticky: 50;
+  --z-header: 100;
+  --z-dropdown: 200;
+  --z-drawer: 300;
+  --z-modal: 400;
+}
+
+/* =====================================================
+   DARK MODE THEME
+   ===================================================== */
+.dark {
+  --color-background: #0A0907;       /* Very deep warm black */
+  --color-surface: #100E0B;
+  --color-foreground: #F2EDE4;       /* Warm ivory white */
+  --color-card: #151210;
+  --color-card-foreground: #F2EDE4;
+
+  --color-primary: #F2EDE4;
+  --color-primary-foreground: #0A0907;
+  --color-secondary: #A8A29C;
+  --color-secondary-foreground: #0A0907;
+
+  --color-accent: #C9952C;           /* Champagne gold — bright enough on dark */
+  --color-accent-light: #DEAA40;
+  --color-accent-hover: #B5821E;
+  --color-accent-foreground: #0A0907;
+
+  --color-border: #242018;
+  --color-border-subtle: #1C1916;
+  --color-muted: #1C1916;
+  --color-muted-foreground: #A8A29C;
+  --color-input: #242018;
+  --color-ring: #C9952C;
+
+  --color-ivory-50: #151210;
+  --color-ivory-100: #1C1916;
+  --color-ivory-200: #242018;
+
+  --color-charcoal-100: #E8E4E0;
+  --color-charcoal-200: #D4D0CC;
+  --color-charcoal-300: #A8A29C;
+  --color-charcoal-400: #7A746E;
+  --color-charcoal-500: #58534E;
+  --color-charcoal-600: #3E3832;
+  --color-charcoal-700: #1E1B17;
+  --color-charcoal-800: #14120E;
+  --color-charcoal-900: #0C0A08;
+
+  /* Gold in dark mode — warmer, brighter */
+  --color-gold-300: #E5C55A;
+  --color-gold-400: #D4A017;
+  --color-gold-500: #C9952C;
+
+  /* Shadows dark */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.6);
+  --shadow-gold: 0 4px 24px rgba(201, 149, 44, 0.20);
+}
+
+/* =====================================================
+   BASE ELEMENT STYLES
+   ===================================================== */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-size: 1rem;        /* 16px — minimum readable */
+    line-height: 1.75;
+    letter-spacing: 0;      /* Montserrat không cần letter-spacing trên body */
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color var(--transition-base), color var(--transition-base);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-foreground);
+    letter-spacing: -0.01em;
+  }
+
+  /* Typography Scale — Luxury Editorial, Mobile-first */
+  h1 { font-size: clamp(2.25rem, 5vw + 1rem, 4rem); }    /* 36px → 64px */
+  h2 { font-size: clamp(1.75rem, 3vw + 0.75rem, 2.75rem); } /* 28px → 44px */
+  h3 { font-size: clamp(1.25rem, 2vw + 0.5rem, 1.875rem); } /* 20px → 30px */
+  h4 { font-size: clamp(1.0625rem, 1.5vw + 0.25rem, 1.375rem); }
+  h5 { font-size: 1.0625rem; }
+  h6 { font-size: 1rem; }
+
+  p {
+    font-size: 1rem;        /* 16px minimum for paragraphs */
+    line-height: 1.8;
+    color: var(--color-charcoal-600);
+    letter-spacing: 0;
+  }
+
+  .dark p {
+    color: var(--color-charcoal-400);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-200);
+    color: #0A0907;
+  }
+
+  .dark ::selection {
+    background-color: var(--color-gold-700);
+    color: #F2EDE4;
+  }
+}
+
+/* =====================================================
+   LUXURY EDITORIAL UTILITIES
+   ===================================================== */
+@layer components {
+  /* Container with safe responsive padding */
+  .container-site {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-site {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-site {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+
+  /* Section Spacing — Visual Rhythm */
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 5.5rem;
+      padding-bottom: 5.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+  }
+
+  /* Luxury Eyebrow — small label above headings */
+  .tracking-luxury {
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.6875rem;     /* 11px — eyebrow only */
+    font-family: var(--font-body);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  @media (min-width: 640px) {
+    .tracking-luxury {
+      font-size: 0.75rem;     /* 12px desktop eyebrow */
+    }
+  }
+
+  /* Editorial Gold Hairline Divider */
+  .divider-gold {
+    width: 3rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    margin: 1.25rem auto;
+  }
+
+  /* ===== BUTTONS — Luxury Minimalist (48px touch targets) ===== */
+
+  /* Primary: Gold fill */
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0.875rem 2rem;
+    background-color: var(--color-accent);
+    color: #FFFFFF;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;     /* 13px — uppercase buttons feel larger */
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid var(--color-accent);
+    transition: all var(--transition-base);
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-gold::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.22),
+      transparent
+    );
+    pointer-events: none;
+    transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-gold:hover::after {
+    transform: translateX(360%);
+  }
+
+  .btn-gold:hover {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    box-shadow: var(--shadow-gold);
+    transform: translateY(-1px);
+  }
+
+  .btn-gold:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  .dark .btn-gold {
+    background-color: var(--color-accent);
+    color: #0A0907;
+    border-color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .dark .btn-gold:hover {
+    background-color: var(--color-accent-light);
+    border-color: var(--color-accent-light);
+  }
+
+  /* Secondary: Outline dark */
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0.875rem 2rem;
+    background-color: transparent;
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-base);
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background-color: rgba(154, 92, 4, 0.04);
+  }
+
+  /* Outline white — for use on dark backgrounds */
+  .btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0.875rem 2rem;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(4px);
+    transition: all var(--transition-base);
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .btn-outline-white:hover {
+    border-color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+  }
+
+  /* ===== PRODUCT CARD ===== */
+  .card-product {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    transition: border-color var(--duration-normal) var(--ease-out),
+                box-shadow var(--duration-normal) var(--ease-out),
+                transform var(--duration-normal) var(--ease-luxury);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-product:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 10px 28px -4px rgba(154, 92, 4, 0.12);
+    transform: translateY(-3px);
+  }
+
+  .dark .card-product:hover {
+    box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.65);
+  }
+
+  /* ===== INPUT — High-end feel, 16px min to prevent iOS zoom ===== */
+  .input-luxury {
+    width: 100%;
+    min-height: 50px;
+    padding: 0.8125rem 1rem;
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-size: 1rem;        /* 16px — critical for mobile */
+    line-height: 1.5;
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .input-luxury:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 1px var(--color-accent);
+  }
+
+  .input-luxury::placeholder {
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+  }
+
+  /* ===== GOLD BADGE ===== */
+  .badge-gold {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.175rem 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background-color: rgba(154, 92, 4, 0.1);
+    color: var(--color-accent);
+    border: 1px solid rgba(154, 92, 4, 0.25);
+  }
+
+  .dark .badge-gold {
+    background-color: rgba(201, 149, 44, 0.15);
+    color: var(--color-accent);
+    border-color: rgba(201, 149, 44, 0.3);
+  }
+
+  /* ===== SECTION HEADING BLOCK — reusable ===== */
+  .section-heading {
+    text-align: center;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 640px) {
+    .section-heading {
+      margin-bottom: 3.5rem;
+    }
+  }
+
+  .section-heading .eyebrow {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-heading p {
+    font-size: 0.9375rem;   /* 15px — section descriptions */
+    color: var(--color-muted-foreground);
+    margin-top: 0.75rem;
+    line-height: 1.7;
+  }
+}
+
+/* =====================================================
+   LUXURY EDITORIAL MOTION & ANIMATIONS
+   ===================================================== */
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroScaleReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes luxuryFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes luxuryLineExpand {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Hero Sequential Animation Classes */
+.animate-hero-eyebrow {
+  animation: heroReveal 800ms var(--ease-luxury) 150ms both;
+}
+
+.animate-hero-title {
+  animation: heroReveal 900ms var(--ease-luxury) 300ms both;
+}
+
+.animate-hero-desc {
+  animation: heroReveal 900ms var(--ease-luxury) 480ms both;
+}
+
+.animate-hero-cta {
+  animation: heroReveal 850ms var(--ease-luxury) 620ms both;
+}
+
+.animate-hero-proof {
+  animation: heroReveal 850ms var(--ease-luxury) 760ms both;
+}
+
+.animate-hero-image {
+  animation: heroScaleReveal 1000ms var(--ease-luxury) 350ms both;
+}
+
+/* Reduced Motion Override — Mandatory */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-hero-eyebrow,
+  .animate-hero-title,
+  .animate-hero-desc,
+  .animate-hero-cta,
+  .animate-hero-proof,
+  .animate-hero-image {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
