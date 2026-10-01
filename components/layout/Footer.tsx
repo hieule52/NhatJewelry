@@ -198,9 +198,14 @@ export function Footer() {
           </p>
           <p className="text-xs text-[#7A746E] dark:text-[#4A4540] text-center sm:text-right">
             Thiết kế &amp; phát triển bởi{" "}
-            <span className="text-[#9A5C04] dark:text-[#C9952C] font-semibold tracking-wide hover:text-[#B8720A] dark:hover:text-[#DEAA40] transition-colors cursor-default">
+            <a
+              href="https://www.dhtech.io.vn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#9A5C04] dark:text-[#C9952C] font-semibold tracking-wide hover:text-[#B8720A] dark:hover:text-[#DEAA40] transition-colors"
+            >
               DHTECH
-            </span>
+            </a>
           </p>
         </div>
       </div>
